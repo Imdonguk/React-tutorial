@@ -5,29 +5,39 @@ class PhoneForm extends Component {
         name: "",
         phoneNumber: "",
     }
-    handleChange({ target }) {
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.onCreate(this.state);
+        this.setState({
+            name: '',
+            phoneNumber: ''
+        })
+    }
+
+    handleChange = ({ target }) => {
         this.setState({
             [target.name]: target.value
         })
     }
+
     render() {
         return (
             <div>
                 <h2>Input상태 관리하기</h2>
-                <p>이름입력 : <input
-                    name="name"
-                    type="text"
-                    onChange={this.handleChange.bind(this)}
-                /></p>
-                <p>번호입력 : <input
-                    name="phone"
-                    type="text"
-                    onChange={this.handleChange.bind(this)}
-                /></p>
-
-                <p>이름로그 : {this.state.name}</p>
-                <p>폰번호로그 : {this.state.phone}</p>
-
+                <form onSubmit={this.handleSubmit}>
+                    <p>이름입력 : <input
+                        name="name"
+                        type="text"
+                        onChange={this.handleChange}
+                    /></p>
+                    <p>번호입력 : <input
+                        name="phoneNumber"
+                        type="text"
+                        onChange={this.handleChange}
+                    /></p>
+                    <button type="submit">등록</button>
+                </form>
             </div>
         );
     }
