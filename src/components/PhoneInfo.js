@@ -8,13 +8,13 @@ class PhoneInfo extends Component {
         phoneNumber: ''
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.info !== nextProps.info
+    }
+
     handleRemove = () => {
         const { onRemove, info } = this.props
         onRemove(info.id)
-    }
-
-    handleUpdate = () => {
-
     }
 
     handleChange = ({ target }) => {
